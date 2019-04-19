@@ -1,21 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator, createAppContainer } from "react-navigation";
+
+import {HomeScreen, PhotoGridScreen} from './screens'
+
+const AppNavigator = createStackNavigator({
+	  Home: HomeScreen,
+	  PhotoGrid: PhotoGridScreen
+	},
+	{
+		initialRouteName: "Home"
+	}
+
+);
+
+const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>First Photohunt App</Text>
-      </View>
-    );
+    return <AppContainer />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
