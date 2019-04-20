@@ -1,5 +1,8 @@
 import React from 'react';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { Provider } from 'react-redux';
+
+import configureStore from './redux/configureStore'
 
 import {HomeScreen, PhotoGridScreen} from './screens'
 
@@ -15,8 +18,16 @@ const AppNavigator = createStackNavigator({
 
 const AppContainer = createAppContainer(AppNavigator);
 
+const store = configureStore();
+
+console.log(store)
+
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return (
+    		<Provider store={store}>
+    			<AppContainer />
+    		</Provider>
+    	)
   }
 }
