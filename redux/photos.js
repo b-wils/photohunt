@@ -2,10 +2,11 @@
 
 var initialState = [];
 
-for (var i=0; i<10; i++) {
+for (var i=0; i<16; i++) {
 	initialState.push({
 		id: i,
 		title: 'hello world!'
+
 	})
 }
 

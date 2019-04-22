@@ -20,8 +20,6 @@ const AppContainer = createAppContainer(AppNavigator);
 
 const store = configureStore();
 
-console.log(store)
-
 export default class App extends React.Component {
   render() {
     return (
