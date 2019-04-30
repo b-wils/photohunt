@@ -3,7 +3,10 @@ import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 
+import photos from '@assets/photos'
+
 class PhotoGridScreen extends React.Component {
+
   render() {
     return (
       <View>
@@ -12,12 +15,11 @@ class PhotoGridScreen extends React.Component {
             {this.props.photos.map((item,i) => 
               <PhotoContainer key={i}>
                 <PhotoBuffer />
-                <Photo source={require('./150.png')}/>
+                <Photo source={item}/>
               </PhotoContainer>
             )}
 
           </PhotoList>
-          <PhotoListSpacer />
         </ScrollView>
       </View>
     );
@@ -25,9 +27,11 @@ class PhotoGridScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
+  var photoList = Object.values(state.photos)
+
 	return {
-		value: state.photos[0].title,
-    photos: state.photos
+    photos: photoList
 	}
 }
 
