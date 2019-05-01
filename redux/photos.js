@@ -3,20 +3,21 @@ import photoMap from '@assets/photos'
 
 var initialState = photoMap;
 
-// for (var i=0; i<16; i++) {
-// 	initialState.push({
-// 		id: i,
-// 		title: 'hello world!'
-
-// 	})
-// }
-
 function photos(state = initialState, action) {
 
   switch (action.type) {
     default:
       return state
   }
+}
+
+
+export const getPhotoList = (state) => {
+	return Object.values(state.photos)
+}
+
+export const getCurrentPhotoFromNav = (state, props) => {
+	return state.photos[props.navigation.getParam('id', 'NO-ID')]
 }
 
 export default photos

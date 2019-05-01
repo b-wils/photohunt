@@ -1,22 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 
-import photos from '@assets/photos'
+import {getPhotoList} from '../../redux/photos'
 
 class PhotoGridScreen extends React.Component {
 
+  static navigationOptions = {
+    title: 'Photo List',
+  };
+
   render() {
+    console.log(this.props.photos)
     return (
       <View>
         <ScrollView>
           <PhotoList>
             {this.props.photos.map((item,i) => 
-              <PhotoContainer key={i}>
-                <PhotoBuffer />
-                <Photo source={item}/>
+
+              <PhotoContainer key={i}  onPress={() => this.props.navigation.navigate('PhotoView', {id:item.id})}>
+                <View>
+                  <PhotoBuffer />
+
+                  <Photo source={item.thumb}/>
+                  <PhotoTitle> {item.id}</PhotoTitle>
+                </View>
               </PhotoContainer>
+
             )}
 
           </PhotoList>
@@ -28,10 +39,8 @@ class PhotoGridScreen extends React.Component {
 
 const mapStateToProps = (state) => {
 
-  var photoList = Object.values(state.photos)
-
 	return {
-    photos: photoList
+    photos: getPhotoList(state)
 	}
 }
 
@@ -48,7 +57,7 @@ const Photo = styled.Image `
   position: absolute;
 `
 
-const PhotoContainer = styled.View `
+const PhotoContainer = styled.TouchableOpacity `
   padding: 2px;
   height: auto;
   width: 33%;
@@ -57,6 +66,11 @@ const PhotoContainer = styled.View `
 
 const PhotoBuffer = styled.View `
     padding-top:100%;
+`
+
+const PhotoTitle = styled.Text `
+  position: absolute;
+  color: white;
 `
 
 var WrappedComponent = connect(mapStateToProps)(PhotoGridScreen)

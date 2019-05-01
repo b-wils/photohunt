@@ -5,8 +5,19 @@ const photoNumbers = [27,32,36,38,46,58,71,92,93]
 
 const photos = photoNumbers.reduce((acc, cur) => {
 
-	acc[cur] = `require(\`./bday2019-${cur}.jpg\`)`
+	acc[cur] = {
+		thumb: `require(\`../assets/location-photos/bday2019-${cur}.png\`)`,
+		id: cur
+	}
 	return acc;
 }, {})
 
-console.log(photos)
+console.log(JSON.stringify(photos, null, 2))
+
+// Need to remove quotes from code strings
+// Sublime cheat
+// 
+// Find: "require(.*)"
+// Replace: require$1
+//
+// This whole thing is hacky
