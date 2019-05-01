@@ -4,12 +4,13 @@ import { Provider } from 'react-redux';
 
 import configureStore from './redux/configureStore'
 
-import {HomeScreen, PhotoGridScreen, PhotoViewScreen} from './screens'
+import {HomeScreen, PhotoGridScreen, PhotoViewScreen, CameraScreen} from './screens'
 
 const AppNavigator = createStackNavigator({
 	  Home: HomeScreen,
 	  PhotoGrid: PhotoGridScreen,
-    PhotoView: PhotoViewScreen
+    PhotoView: PhotoViewScreen,
+    Camera: CameraScreen
 	},
 	{
 		initialRouteName: "Home"

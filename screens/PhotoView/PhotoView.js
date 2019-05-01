@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 
@@ -20,6 +20,10 @@ class PhotoViewScreen extends React.Component {
     return (
       <View>
         <Image source={photo.thumb} />
+        <Button
+          title="Take a Picture"
+          onPress={() => this.props.navigation.navigate('Camera')}
+        />
       </View>
     );
   }
