@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'remote-redux-devtools';
 
 import photos from './photos'
 
@@ -14,7 +15,7 @@ export default function configureStore() {
 		photos: photos
 	})
 
-	const store = createStore(rootReducer, applyMiddleware(...middleware))
+	const store = createStore(rootReducer, /* preloadedState, */ composeWithDevTools(applyMiddleware(...middleware)))
 
 	return store;
 }
