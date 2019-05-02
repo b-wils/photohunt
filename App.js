@@ -6,6 +6,8 @@ import configureStore from './redux/configureStore'
 
 import {HomeScreen, PhotoGridScreen, PhotoViewScreen, CameraScreen, PhotoConfirmScreen} from './screens'
 
+const navigationPersistenceKey = __DEV__ ? "NavigationStateDEV" : null;
+
 const AppNavigator = createStackNavigator({
 	  Home: HomeScreen,
 	  PhotoGrid: PhotoGridScreen,
@@ -27,7 +29,7 @@ export default class App extends React.Component {
   render() {
     return (
     		<Provider store={store}>
-    			<AppContainer />
+    			<AppContainer persistenceKey={navigationPersistenceKey}/>
     		</Provider>
     	)
   }
