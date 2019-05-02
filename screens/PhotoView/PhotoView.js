@@ -9,7 +9,7 @@ class PhotoViewScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Photo View - ' + navigation.getParam('id', 'Error'),
+      title: 'Photo View - ' + navigation.getParam('photoid', 'Error'),
     }
   };
 
@@ -22,7 +22,7 @@ class PhotoViewScreen extends React.Component {
         <Image source={photo.thumb} />
         <Button
           title="Take a Picture"
-          onPress={() => this.props.navigation.navigate('Camera')}
+          onPress={() => this.props.navigation.navigate('Camera', {photoid: this.props.photo.id})}
         />
       </View>
     );
@@ -35,30 +35,6 @@ const mapStateToProps = (state, ownProps) => {
     photo: getCurrentPhotoFromNav(state, ownProps)
 	}
 }
-
-const PhotoList = styled.View `
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-`
-
-const Photo = styled.Image `
-  width: 100%;
-  height: 100%;
-  position: absolute;
-`
-
-const PhotoContainer = styled.View `
-  padding: 2px;
-  height: auto;
-  width: 33%;
-  position: relative;
-`
-
-const PhotoBuffer = styled.View `
-    padding-top:100%;
-`
 
 var WrappedComponent = connect(mapStateToProps)(PhotoViewScreen)
 

@@ -64,7 +64,7 @@ export class CameraScreen extends React.Component {
                     this.camera.takePictureAsync().then((photo) => {
                       // TODO Should we should improve navigation so we don't backtrack to this screen later?
                       // Also this is slow to execute, we should display some user feedback first
-                      this.props.navigation.navigate('PhotoConfirm', {photo: photo})
+                      this.props.navigation.navigate('PhotoConfirm', {photo: photo, photoid: this.props.navigation.getParam('photoid', 'NO-ID')})
                     });
                   }
                 }}>

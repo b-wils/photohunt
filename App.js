@@ -6,7 +6,9 @@ import configureStore from './redux/configureStore'
 
 import {HomeScreen, PhotoGridScreen, PhotoViewScreen, CameraScreen, PhotoConfirmScreen} from './screens'
 
-const navigationPersistenceKey = __DEV__ ? "NavigationStateDEV" : null;
+// TODO we should find a way to move this out of our source, .env support is not as good on native
+const navigationPersistenceKeyMod = '_1'
+const navigationPersistenceKey = __DEV__ ? "NavigationStateDEV" + navigationPersistenceKeyMod: null;
 
 const AppNavigator = createStackNavigator({
 	  Home: HomeScreen,

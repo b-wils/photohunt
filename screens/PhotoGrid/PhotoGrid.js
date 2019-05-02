@@ -19,12 +19,12 @@ class PhotoGridScreen extends React.Component {
           <PhotoList>
             {this.props.photos.map((item,i) => 
 
-              <PhotoContainer key={i}  onPress={() => this.props.navigation.navigate('PhotoView', {id:item.id})}>
+              <PhotoContainer key={i}  onPress={() => this.props.navigation.navigate('PhotoView', {photoid:item.id})}>
                 <View>
                   <PhotoBuffer />
 
-                  <Photo source={item.thumb}/>
-                  <PhotoTitle> {item.id}</PhotoTitle>
+                  <Photo source={item.userPhoto ?{uri: item.userPhoto.uri} : item.thumb}/>
+                  <PhotoTitle> {item.id} - {item.userPhoto ? 'Done' : 'Open'}</PhotoTitle>
                 </View>
               </PhotoContainer>
 

@@ -3,27 +3,30 @@ import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native'
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 
-// import {getCurrentPhotoFromNav} from '../../redux/photos'
+import {getCurrentPhotoFromNav, setUserPhoto} from '../../redux/photos'
 
 class PhotoConfirmScreen extends React.Component {
 
   static navigationOptions = ({navigation}) => {
     return {
-      title: 'Photo Confirm View - ' + navigation.getParam('id', 'Temp'),
+      title: 'Photo Confirm View - ' + navigation.getParam('photoid', 'Temp2'),
     }
   };
 
   render() {
 
-    let photo = this.props.navigation.getParam('photo', null);
-
+    let userPhoto = this.props.navigation.getParam('photo', null);
+    let photo = this.props.photo;
     return (
       <View>
-
-        <Image source={{uri: photo.uri}} style={{width: 250, height: 250}}/>
+        <Text> Original </Text>
+        <Image source={photo.thumb} />
+        <Text> Yours </Text>
+        <Image source={{uri: userPhoto.uri}} style={{width: 200, height: 200}}/>
         <Button
           title="Confirm"
           onPress={() => {
+            this.props.dispatch(setUserPhoto(userPhoto, photo.id))
             this.props.navigation.navigate('PhotoGrid')
           }}
         />
@@ -35,7 +38,7 @@ class PhotoConfirmScreen extends React.Component {
 const mapStateToProps = (state, ownProps) => {
 
 	return {
-    // photo: getCurrentPhotoFromNav(state, ownProps)
+    photo: getCurrentPhotoFromNav(state, ownProps)
 	}
 }
 
