@@ -12,7 +12,7 @@ class PhotoGridScreen extends React.Component {
   };
 
   render() {
-    console.log(this.props.photos)
+
     return (
       <View>
         <ScrollView>
