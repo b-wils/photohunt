@@ -18,16 +18,40 @@ class PhotoViewScreen extends React.Component {
     let photo = this.props.photo;
 
     return (
-      <View>
-        <Image source={photo.thumb} />
-        <Button
-          title="Take a Picture"
-          onPress={() => this.props.navigation.navigate('Camera', {photoid: this.props.photo.id})}
-        />
-      </View>
+      <ScrollView>
+        <PhotoView>
+          <Photo source={photo.thumb} />
+          {photo.userPhoto && 
+            <Photo source={{uri: photo.userPhoto.uri}}/>
+          }
+          <CameraButton
+            title="Take a Picture "
+            onPress={() => this.props.navigation.navigate('Camera', {photoid: this.props.photo.id})}
+          />
+        </PhotoView>
+      </ScrollView>   
     );
   }
 }
+
+const PhotoView = styled.View `
+  padding: 8px;
+  flex: 1;
+  align-items: center;
+
+`
+
+const Photo = styled.Image `
+  width:75%;
+  margin-bottom: 8px;
+  height: undefined;
+  aspect-ratio: 1.5;
+`
+
+const CameraButton = styled.Button `
+  width: 100px;
+
+`
 
 const mapStateToProps = (state, ownProps) => {
 

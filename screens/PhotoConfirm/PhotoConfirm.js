@@ -18,19 +18,21 @@ class PhotoConfirmScreen extends React.Component {
     let userPhoto = this.props.navigation.getParam('photo', null);
     let photo = this.props.photo;
     return (
-      <View>
-        <Text> Original </Text>
-        <Image source={photo.thumb} />
-        <Text> Yours </Text>
-        <Image source={{uri: userPhoto.uri}} style={{width: 200, height: 200}}/>
-        <Button
-          title="Confirm"
-          onPress={() => {
-            this.props.dispatch(setUserPhoto(userPhoto, photo.id))
-            this.props.navigation.navigate('PhotoGrid')
-          }}
-        />
-      </View>
+      <ScrollView>
+        <PhotoView>
+          <Text> Original </Text>
+          <TargetPhoto source={photo.thumb} />
+          <Text> Yours </Text>
+          <UserPhoto source={{uri: userPhoto.uri}} />
+          <Button
+            title="Confirm"
+            onPress={() => {
+              this.props.dispatch(setUserPhoto(userPhoto, photo.id))
+              this.props.navigation.navigate('PhotoGrid')
+            }}
+          />
+        </PhotoView>
+      </ScrollView>
     );
   }
 }
@@ -42,28 +44,25 @@ const mapStateToProps = (state, ownProps) => {
 	}
 }
 
-const PhotoList = styled.View `
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+const PhotoView = styled.View `
+  padding: 8px;
+  flex: 1;
+  align-items: center;
+
 `
 
-const Photo = styled.Image `
-  width: 100%;
-  height: 100%;
-  position: absolute;
+const TargetPhoto = styled.Image `
+  width: 75%;
+  height: undefined;
+  aspect-ratio: 1.5;
+  margin: 4px;
 `
 
-const PhotoContainer = styled.View `
-  padding: 2px;
-  height: auto;
-  width: 33%;
-  position: relative;
-`
-
-const PhotoBuffer = styled.View `
-    padding-top:100%;
+const UserPhoto = styled.Image `
+  width: 75%;
+  height: undefined;
+  aspect-ratio: 1.5;
+  margin: 4px;
 `
 
 var WrappedComponent = connect(mapStateToProps)(PhotoConfirmScreen)
