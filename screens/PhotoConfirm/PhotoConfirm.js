@@ -1,21 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, Button } from 'react-native';
-import { connect } from 'react-redux';
-import styled from 'styled-components/native';
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Button
+} from "react-native";
+import { connect } from "react-redux";
+import styled from "styled-components/native";
 
-import {getCurrentPhotoFromNav, setUserPhoto} from '../../redux/photos'
+import { getCurrentPhotoFromNav, setUserPhoto } from "../../redux/photos";
 
 class PhotoConfirmScreen extends React.Component {
-
-  static navigationOptions = ({navigation}) => {
+  static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Photo Confirm View - ' + navigation.getParam('photoid', 'Temp2'),
-    }
+      title: "Photo Confirm View - " + navigation.getParam("photoid", "Temp2")
+    };
   };
 
   render() {
-
-    let userPhoto = this.props.navigation.getParam('photo', null);
+    let userPhoto = this.props.navigation.getParam("photo", null);
     let photo = this.props.photo;
     return (
       <ScrollView>
@@ -23,12 +28,12 @@ class PhotoConfirmScreen extends React.Component {
           <Text> Original </Text>
           <TargetPhoto source={photo.thumb} />
           <Text> Yours </Text>
-          <UserPhoto source={{uri: userPhoto.uri}} />
+          <UserPhoto source={{ uri: userPhoto.uri }} />
           <Button
             title="Confirm"
             onPress={() => {
-              this.props.dispatch(setUserPhoto(userPhoto, photo.id))
-              this.props.navigation.navigate('PhotoGrid')
+              this.props.dispatch(setUserPhoto(userPhoto, photo.id));
+              this.props.navigation.navigate("PhotoGrid");
             }}
           />
         </PhotoView>
@@ -38,33 +43,31 @@ class PhotoConfirmScreen extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-
-	return {
+  return {
     photo: getCurrentPhotoFromNav(state, ownProps)
-	}
-}
+  };
+};
 
-const PhotoView = styled.View `
+const PhotoView = styled.View`
   padding: 8px;
   flex: 1;
   align-items: center;
+`;
 
-`
-
-const TargetPhoto = styled.Image `
+const TargetPhoto = styled.Image`
   width: 75%;
   height: undefined;
   aspect-ratio: 1.5;
   margin: 4px;
-`
+`;
 
-const UserPhoto = styled.Image `
+const UserPhoto = styled.Image`
   width: 75%;
   height: undefined;
   aspect-ratio: 1.5;
   margin: 4px;
-`
+`;
 
-var WrappedComponent = connect(mapStateToProps)(PhotoConfirmScreen)
+var WrappedComponent = connect(mapStateToProps)(PhotoConfirmScreen);
 
-export {WrappedComponent as PhotoConfirmScreen}
+export { WrappedComponent as PhotoConfirmScreen };

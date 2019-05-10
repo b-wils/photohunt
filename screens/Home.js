@@ -1,11 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { ScreenOrientation } from 'expo';
+import React from "react";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { ScreenOrientation } from "expo";
 
 export class HomeScreen extends React.Component {
-
   static navigationOptions = {
-    title: 'Home',
+    title: "Home"
   };
 
   constructor(props) {
@@ -21,7 +20,7 @@ export class HomeScreen extends React.Component {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Button
           title="Start Photohunt"
-          onPress={() => this.props.navigation.navigate('PhotoGrid')}
+          onPress={() => this.props.navigation.navigate("PhotoGrid")}
         />
       </View>
     );

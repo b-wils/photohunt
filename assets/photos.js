@@ -1,3 +1,3 @@
-import photos from './location-photos'
+import photos from "./location-photos";
 
-export default photos
+export default photos;
